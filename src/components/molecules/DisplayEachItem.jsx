@@ -21,7 +21,7 @@ const DisplayEachItem = () => {
       {success && (
         <p
           ref={successref}
-          className="bg-blue-200 success sticky text-center top-0 w-full py-2 mt-4 z-20   lg:text-lg "
+          className="bg-blue-200 success fixed text-center top-0 w-full py-2 z-20   lg:text-lg "
         >
           Successfully added!
         </p>
@@ -29,7 +29,7 @@ const DisplayEachItem = () => {
       {duplicateItem && (
         <p
           ref={successref}
-          className="bg-red-200 success sticky text-center top-0 w-full py-2 mt-4 z-20   lg:text-lg "
+          className="bg-red-200 success fixed text-center top-0 w-full py-2  z-20   lg:text-lg "
         >
           Already in cart!
         </p>
@@ -48,12 +48,12 @@ const DisplayEachItem = () => {
           <div className="flex items-center gap-1 text-[#00B517]">
             <BsCheck2 /> <Text className="" body="In stock" />
           </div>
-          <Text className="text-xl font-semibold text-cfour" body={item.name} />
+          <Text className="text-xl font-semibold text-cfour" body={item?.name} />
 
           <div className="flex justify-between bg-[#f8f2ea] p-4">
             <div className="w-full text-center">
               <p className="text-cthree text-lg font-semibold">
-                &#8358; {numFor.format(isNaN(item.price) ? 0 : item.price)}
+                &#8358; {numFor.format(isNaN(item?.price) ? 0 : item?.price)}
               </p>
             </div>
           </div>

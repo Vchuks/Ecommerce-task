@@ -16,8 +16,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [search, setSearch] = useState("");
   const {cartArray} = useContext(DataContext)
-
- 
+ const cartArrayPageReload = JSON.parse(localStorage.getItem('cartArr'))
   
   return (
     <>
@@ -50,13 +49,11 @@ const Header = () => {
         <div className="flex gap-4">
           <div className="text-ctwo w-fit flex flex-col gap-1  items-center">
             <FaUserLarge className="text-xl" />
-            <Text body="Profile" className="text-xs" />
           </div>
           
           <div className="text-ctwo w-max flex flex-col gap-1 items-center relative">
-            <Link to='cart_page'><IoMdCart className="text-xl" /></Link>
-            <span className="absolute -top-2 font-semibold left-5 bg-cprimary px-1 text-white text-xs rounded-[100%]">{cartArray.length}</span>
-            <Text body="My Cart" className="text-xs" />
+            <Link to='cart_page'><IoMdCart className="text-2xl" /></Link>
+            <span className="absolute -top-2 font-semibold left-5 bg-cprimary px-1 text-white text-xs rounded-[100%]">{cartArrayPageReload?.length || cartArray?.length }</span>
           </div>
         </div>
       </div>

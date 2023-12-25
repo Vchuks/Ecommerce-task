@@ -3,13 +3,17 @@ import PropTypes from "prop-types";
 import Text from "../atoms/Text";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataContext from "../../context/DataContext";
 
 const CartItems = ({ cartItems }) => {
-  const { image, name, price, id } = cartItems;
+  
+  const { image, name, price, id, qty } = cartItems;
+  
   const numFor = Intl.NumberFormat("en-US");
-  const {itemDecrease, itemIncrease, deleteItem, quantity} = useContext(DataContext)
+  useEffect(()=>{cartItems},[cartItems])
+ 
+  const {itemDecrease, itemIncrease, deleteItem} = useContext(DataContext)
 
   return (
     <div className="flex flex-col gap-4 px-6 lg:px-14 xl:px-24">
@@ -26,20 +30,21 @@ const CartItems = ({ cartItems }) => {
             <button
               className="bg-blue-600 text-white px-2 py-[5px] rounded"
               onClick={() => {
-                itemDecrease(id);
+                itemDecrease(id, cartItems);
+                localStorage.setItem('ar', JSON.stringify(cartItems))
               }}
             >
               <FaMinus className="text-sm" />
             </button>
-            <span>{quantity}</span>
+            <span>{qty}</span>
             <button className="bg-blue-600 text-white px-2 py-[5px] rounded" onClick={() => {
-                itemIncrease(id);
+                itemIncrease(id,cartItems);
               }}>
               <FaPlus className="text-sm" />
             </button>
           </div>
           <button className="w-full lg:w-44 bg-orange-600 flex rounded shadow-sm justify-center text-white mt-4" onClick={() => {
-                deleteItem(id);
+                deleteItem(cartItems);
               }}>
             Remove from cart
           </button>
